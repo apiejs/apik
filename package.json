@@ -1,15 +1,36 @@
 {
-  "name": "mount-q",
-  "version": "1.0.0",
-  "description": "",
+  "name": "mount-routes",
+  "version": "1.0.5",
+  "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "npm publish .",
+    "test": "node test.js"
   },
-  "keywords": [],
-  "author": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/i5ting/mount-routes.git"
+  },
+  "keywords": [
+    "express",
+    "routes",
+    "route",
+    "mount",
+    "require",
+    "directory"
+  ],
+  "author": "i5ting",
   "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/i5ting/mount-routes/issues"
+  },
+  "homepage": "https://github.com/i5ting/mount-routes#readme",
   "dependencies": {
+    "cli-table": "^0.3.1",
+    "debug": "^2.2.0",
     "require-directory": "^2.1.1"
+  },
+  "devDependencies": {
+    "express": "^4.12.4"
   }
 }
