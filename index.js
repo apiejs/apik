@@ -81,7 +81,7 @@ function _dump(routes_folder_path) {
 
   // console.log(stack)
   console.log('\n******************************************************');
-  console.log('\t\tMoaJS Apis Dump');
+  console.log('\t\tApie Router Dump');
   console.log('******************************************************\n');
   
   for (var k in stack) {
@@ -158,7 +158,8 @@ module.exports = function(folder) {
   app.listen(port)
 }
 
-module.exports.app = function (folder){
+module.exports.app = function (){
+  var folder = arguments[0] || '.';
   var debug = arguments[1] || false;
   
   mount_with_folder(app, folder, debug);
