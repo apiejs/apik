@@ -29,9 +29,9 @@ function mount(app) {
     var file = '/' + pre + '' + k + '.js';
     // console.log('mount route ' + file + " ");
     var path = '';
-    console.log(file)
-    console.log(k)
-    console.log(r[k])
+    // console.log(file)
+    // console.log(k)
+    // console.log(r[k])
     if (k === 'apie.js' || k === 'app.js'|| k === 'package.json') {
       return
     }
@@ -59,32 +59,15 @@ function _use(app, file, path, handler) {
   var method = router.shift()
 
   app[method].apply(app, router)
-  
-  _track_routes(file, path, handler.stack);
+  // console.log(file+ ' ' +method + ' ' + path)
+  _track_routes(file, path, method);
 }
 
-function _track_routes(file, path, handle) {
-  for(var i in handle){
-    var _route = handle[i].route;
-    // console.log(_route);
-    // console.log(_route.stack);
-    // console.log(_route.methods);
-    if(!_route)continue;  //添加了非空的处理逻辑，挂载中间件的路由不予显示在路由列表中
-
-    var params = _route.stack.params;
-    
-    for(var j in _route.methods){
-      if(_route.path == '/'){
-        _cache_to_stack(file, path, j);
-      }else{
-        _cache_to_stack(file, path + _route.path, j);
-      }
-    }
-  }
+function _track_routes(file, path, method) {
+   _cache_to_stack(file, path, method);
 }
 
 function _cache_to_stack(file, path, method) {
-  // console.log(file+ ' ' +method + ' ' + path)
   stack.push({
     file    : file,
     method  : method,
