@@ -63,6 +63,7 @@ writing support
 - middlewares
 - view template(default pug)
 - static server
+- middlewares
 
 ### string
 
@@ -159,6 +160,44 @@ $ mkdir routes/public
 
 and then create html/js/jcss/json file. it will be served as static server, all the same as express!
 
+### middlewares
+
+use express/connect middleware in middlewares folder
+
+middlewares/a.js
+
+```
+module.exports = function a (req, res, next) {
+  console.log('a')
+  next()
+}
+```
+
+config with middlewares options
+
+middleware.js
+
+```
+module.exports = {
+    "path": "/middleware",
+    "middlewares": 'a',
+    "body": {
+        "json": "Hello middleware world!"
+    }
+}
+```
+
+middlewares.js
+
+```
+module.exports = {
+    "path": "/middlewares",
+    "middlewares": ['a', 'b'],
+    "body": {
+        "json": "Hello middlewares world!"
+    }
+}
+```
 
 ## Contributing
 
