@@ -57,7 +57,7 @@ app.listen(3000)
 - jsonfile
 - function
 - middlewares
-- view template
+- view template(default pug)
 - static server
 
 ### string
