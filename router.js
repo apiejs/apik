@@ -45,7 +45,9 @@ function build(middlewares, response) {
     if (type(source) === "function") {
         middlewares.push(source)
     } else if (type(source) === 'Array') {
-        middlewares = middlewares.concat(source)
+      for (var k in source){
+        middlewares.push(source[k])
+      }
     } else if (type(source) === 'Object') {
         middlewares.push(function (req, res) {
             res = enhanceResponse(res, response)
