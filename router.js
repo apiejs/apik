@@ -48,8 +48,8 @@ function build(middlewares, response) {
     if (type(source) === "function") {
         middlewares.push(source)
     } else if (type(source) === 'Array') {
-        middlewares.concat(source)
-    } if (type(source) === 'Object') {
+        middlewares = middlewares.concat(source)
+    } else if (type(source) === 'Object') {
         middlewares.push(function (req, res) {
             res = enhanceResponse(res, response)
             res.json(source)

@@ -29,9 +29,9 @@ function mount(app) {
     var file = '/' + pre + '' + k + '.js';
     // console.log('mount route ' + file + " ");
     var path = '';
-    // console.log(file)
-    // console.log(k)
-    // console.log(r[k])
+    console.log(file)
+    console.log(k)
+    console.log(r[k])
     if (k === 'apie.js' || k === 'app.js'|| k === 'package.json') {
       return
     }

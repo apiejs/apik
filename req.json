@@ -1,6 +1,6 @@
 {
     "method": "get",
-    "path": "/users",
+    "path": "/req",
     "headers": {
         
     },
