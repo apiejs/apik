@@ -1,10 +1,9 @@
-var fs = require('fs');
-var type = require('type-detect');
-var express = require('express');
-var compose = require('compose-middleware').compose
-var logger = require('morgan');
-var cookieParser = require('cookie-parser');
-var bodyParser = require('body-parser');
+var fs = require('fs')
+var type = require('type-detect')
+var express = require('express')
+var logger = require('morgan')
+var cookieParser = require('cookie-parser')
+var bodyParser = require('body-parser')
 
 var _req = require('./req.json')
 var _res = require('./res.json')
@@ -27,8 +26,6 @@ module.exports = function (path, config) {
     }
 
     build(middlewares, response)
-
-    // var handler = compose(middlewares)
 
     return [request.method, path].concat(middlewares)
 };
@@ -71,8 +68,6 @@ function build(middlewares, response) {
                 res.end(body);
             })
         }
-        
-        
     }
 
     return middlewares
