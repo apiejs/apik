@@ -32,6 +32,9 @@ function mount(app) {
     // console.log(file)
     // console.log(k)
     // console.log(r[k])
+    if (k === 'apie.js' || k === 'app.js'|| k === 'package.json') {
+      return
+    }
 
     if (typeof r[k] == 'object' && !(r[k]['body'] || r[k]['res']) ){
       // console.log('this is a obj');
@@ -127,10 +130,12 @@ function mount_with_folder(app, routes_folder_path) {
   
   var r         = arguments[1] || './routes';
   var is_debug  = arguments[2] || false;
+
+  r = path.join(require('path').dirname(require.main.filename), r)
   
   global.routes_folder_path = r;
   
-  // console.log('mount routes_folder_path = ' + r)
+  // debug('mount routes_folder_path = ' + r)
   routes = requireDirectory(module, r);
   
   // views
