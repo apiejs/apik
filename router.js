@@ -9,7 +9,7 @@ var debug = require('debug')('apie')
 var _req = require('./req.json')
 var _res = require('./res.json')
 
-module.exports = function (path, config) {
+module.exports = function (app, path, config) {
     var request = Object.assign({}, _req, config.req)
     var response = Object.assign({}, _res, config.res)
 
@@ -19,6 +19,17 @@ module.exports = function (path, config) {
         bodyParser.urlencoded({ extended: false }), 
         cookieParser()
     ]
+    
+    if (config.middlewares) {
+      for (var k in config.middlewares) {
+        var key = config.middlewares[k]
+        
+        if (app.middlewares[key]) {
+          console.log(app.middlewares[key] + "")
+          middlewares.push(app.middlewares[key])
+        }
+      }
+    }
 
     // 外优先
     for (var k in config) {

@@ -55,7 +55,7 @@ function _use(app, file, path, handler) {
   // 配置的path优先于file里的path
   if (handler.path) path = handler.path 
 
-  var router = require('./router')(path, handler)
+  var router = require('./router')(app, path, handler)
   var method = router.shift()
 
   app[method].apply(app, router)
