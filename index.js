@@ -6,7 +6,7 @@ var express = require('express')
 
 var app = express()
 var stack = []
-var port = 3000
+
 /**
  * Mount routes with directory.
  *
@@ -137,15 +137,31 @@ function mount_with_folder(app, routes_folder_path) {
   }
 }
 
-module.exports = function(folder, serverport) {
-  if (serverport) port = serverport
-  mount_with_folder(app, folder, true);
+module.exports = function(folder) {
+  console.dir(arguments)
+  var port = 3000;
+  var debug = false;
+  
+  if (arguments.length === 2) {
+    folder = arguments[0]
+    debug = arguments[1]
+  }
+  
+  if (arguments.length === 3) {
+    folder = arguments[0]
+    port = arguments[1]
+    debug = arguments[2]
+  }
+  
+  mount_with_folder(app, folder, debug);
   
   app.listen(port)
 }
 
 module.exports.app = function (folder){
-  mount_with_folder(app, folder, true);
+  var debug = arguments[1] || false;
+  
+  mount_with_folder(app, folder, debug);
 
   return app
 }

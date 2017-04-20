@@ -1,3 +1,3 @@
 var apie = require('./index')
 
-apie('./routes');
+apie('./routes', true);
