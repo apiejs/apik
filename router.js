@@ -21,13 +21,20 @@ module.exports = function (app, path, config) {
     ]
     
     if (config.middlewares) {
-      for (var k in config.middlewares) {
-        var key = config.middlewares[k]
+      if (type(config.middlewares) === 'Array') {
+        for (var k in config.middlewares) {
+          var key = config.middlewares[k]
         
-        if (app.middlewares[key]) {
-          console.log(app.middlewares[key] + "")
-          middlewares.push(app.middlewares[key])
+          if (app.middlewares[key]) {
+            console.log(app.middlewares[key] + "")
+            middlewares.push(app.middlewares[key])
+          }
         }
+      } else if (type(config.middlewares) === 'string') {
+        var key = config.middlewares
+        middlewares.push(app.middlewares[key])
+      } else {
+        console.log("ignore config.middlewares")
       }
     }
 
