@@ -3,6 +3,7 @@ var path = require('path')
 var requireDirectory = require('require-directory')
 var routes = requireDirectory(module, './routes')
 var express = require('express')
+var debug = require('debug')('apie')
 
 var app = express()
 var stack = []
@@ -27,11 +28,12 @@ function mount(app) {
   
   for (var k in r) {
     var file = '/' + pre + '' + k + '.js';
-    // console.log('mount route ' + file + " ");
+    debug('mount route ' + file + " ");
     var path = '';
-    // console.log(file)
-    // console.log(k)
-    // console.log(r[k])
+    
+    debug(k)
+    debug(r[k])
+    
     if (k === 'apie.js' || k === 'app.js'|| k === 'package.json') {
       return
     }

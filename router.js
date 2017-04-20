@@ -4,6 +4,7 @@ var express = require('express')
 var logger = require('morgan')
 var cookieParser = require('cookie-parser')
 var bodyParser = require('body-parser')
+var debug = require('debug')('apie')
 
 var _req = require('./req.json')
 var _res = require('./res.json')
@@ -26,7 +27,10 @@ module.exports = function (path, config) {
     }
 
     build(middlewares, response)
-
+    
+    debug(request.method + ' path = ' + path)
+    debug(middlewares)
+    
     return [request.method, path].concat(middlewares)
 };
 
