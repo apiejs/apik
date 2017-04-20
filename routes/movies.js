@@ -1,29 +1,15 @@
-var express = require('express');
-
-//configure routes
-
-var router = express.Router();
-
-router.route('/movies')
-    .get(function(req,res){
-        
-    })
-
-    .post(function(req,res){
-      
-    });
-
-router.route('/movies/:id')
-    .put(function(req,res){
-       
-    })
-
-    .get(function(req,res){
-         
-    })
-
-    .delete(function(req,res){
-       
-    });
-
-module.exports=router;
+module.exports = {
+  "req": {
+    "method": "get",
+    "path": "/movies"
+  },
+  "res": {
+    "status": 200,
+    "body": function(req, res){
+       res.json("Hello world!")
+    },
+    "headers": {
+      "Content-Type": "text/plain"
+    }
+  }
+}

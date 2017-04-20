@@ -8,7 +8,9 @@ var mount = require('./index');
 // mount(app);
 
 // with path
-mount(app, 'routes', true);
+// mount(app, 'routes', true);
+
+app.use(require('./a'))
 
 // start server
 app.listen(23018)
