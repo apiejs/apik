@@ -1,4 +1,5 @@
 var fs = require('fs')
+var path = require('path')
 var requireDirectory = require('require-directory')
 var routes = requireDirectory(module, './routes')
 var express = require('express')
@@ -26,11 +27,11 @@ function mount(app) {
   
   for (var k in r) {
     var file = '/' + pre + '' + k + '.js';
-    console.log('mount route ' + file + " ");
+    // console.log('mount route ' + file + " ");
     var path = '';
-    console.log(file)
-    console.log(k)
-    console.log(r[k])
+    // console.log(file)
+    // console.log(k)
+    // console.log(r[k])
 
     if (typeof r[k] == 'object' && !(r[k]['body'] || r[k]['res']) ){
       // console.log('this is a obj');
@@ -131,6 +132,12 @@ function mount_with_folder(app, routes_folder_path) {
   
   // console.log('mount routes_folder_path = ' + r)
   routes = requireDirectory(module, r);
+  
+  // views
+  app.set('views', path.join(r, 'views'));
+  // static server
+  app.use(express.static(path.join(r, 'public')));
+
   
   mount(app) ;
   
