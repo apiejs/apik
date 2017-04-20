@@ -1,6 +1,7 @@
 var fs     = require('fs');
 var requireDirectory = require('require-directory');
 var routes = requireDirectory(module, './routes');
+var express = require('express')
 
 var stack = [];
 /**
@@ -23,15 +24,19 @@ function mount(app) {
   
   for (var k in r) {
     var file = '/' + pre + '' + k + '.js';
-    // console.log('mount route ' + file + " ");
+    console.log('mount route ' + file + " ");
     var path = '';
-    if(typeof r[k] == 'object') {
+    console.log(file)
+    console.log(k)
+    console.log(r[k])
+
+    if (typeof r[k] == 'object' && !(r[k]['body'] || r[k]['res']) ){
       // console.log('this is a obj');
       mount(app, r[k], pre + k + '/');
-    }else if(k === 'index') {
+    } else if(k === 'index') {
       path = '/'+ pre;
       _use(app, file, path, r[k]);
-    }else {
+    } else {
       path = '/' + pre + '' + k;
       _use(app, file, path, r[k]);
     }
@@ -41,7 +46,11 @@ function mount(app) {
 function _use(app, file, path, handler) {
   // console.dir(handler)
   // console.log(handler.stack)
-  app.use(path, handler);
+  if (handler.path) path = handler.path 
+
+  var router = require('./router')(handler)
+
+  app[router.method](path, router.handler);
   
   _track_routes(file, path, handler.stack);
 }
@@ -126,4 +135,15 @@ function mount_with_folder(app, routes_folder_path) {
   }
 }
 
-module.exports = mount_with_folder;
+var app = express()
+
+module.exports = function(folder, cb) {
+  mount_with_folder(app, 'routes', true);
+  app.listen()
+}
+
+module.exports.app = function (folder){
+  mount_with_folder(app, 'routes', true);
+
+  return app
+}

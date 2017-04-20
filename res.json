@@ -1,0 +1,7 @@
+{
+    "status": 200,
+    "body": "this is default body",
+    "headers": {
+        "Content-Type": "text/plain"
+    }
+}

@@ -1,17 +1,17 @@
-// for test
-var express = require('express')
-var app = express()
 
-var mount = require('./index');
+var mount = require('./index').app;
 
-// simple
-// mount(app);
 
-// with path
-// mount(app, 'routes', true);
 
-app.use(require('./a'))
 
-// start server
-app.listen(23018)
+// // simple
+var app = mount('./routes');
+
+console.dir(app)
+
+// // with path
+// // mount(app, 'routes', true);
+
+// // start server
+// app.listen(23018)
 
