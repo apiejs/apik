@@ -14,45 +14,20 @@ module.exports = function (config) {
     var request = Object.assign({}, _req, config.req)
     var response = Object.assign({}, _res, config.res)
 
-    var middlewares = [logger('dev'), bodyParser.json(), bodyParser.urlencoded({ extended: false }), cookieParser()]
-
-    // console.log(request)
-    // console.log(response)
+    var middlewares = [
+        logger('dev'), 
+        bodyParser.json(), 
+        bodyParser.urlencoded({ extended: false }), 
+        cookieParser()
+    ]
 
     // 外优先
     for (var k in config) {
-        // console.log(k)
         if (request[k]) request[k] = config[k]
         if (response[k]) response[k] = config[k]
     }
 
-    // console.log("request")
-    // console.log(request)
-    // console.log(response)
-
-    function build(source) {
-        if (type(source) === "function") {
-            middlewares.push(source)
-        } else if (type(source) === 'Array') {
-            middlewares.concat(source)
-        } if (type(source) === 'Object') {
-            middlewares.push(function (req, res) {
-                res.json(source)
-            })
-        } else {
-            // 转String
-            middlewares.push(function (req, res) {
-                var body = source
-                res.setHeader('Content-Type', 'text/plain');
-                res.setHeader('Content-Length', body.length);
-                res.end(body);
-            })
-        }
-    }
-
-    build(response.body)
-
-    console.log(middlewares)
+    build(middlewares, response)
 
     var handler = compose(middlewares)
 
@@ -61,3 +36,36 @@ module.exports = function (config) {
         handler: handler
     }
 };
+
+function enhanceResponse(res, response) {
+    if (response.headers) res.set(response.headers)
+    if (response.status) res.status(response.status)
+
+    return res
+}
+
+function build(middlewares, response) {
+    var source = response.body
+    if (type(source) === "function") {
+        middlewares.push(source)
+    } else if (type(source) === 'Array') {
+        middlewares.concat(source)
+    } if (type(source) === 'Object') {
+        middlewares.push(function (req, res) {
+            res = enhanceResponse(res, response)
+            res.json(source)
+        })
+    } else {
+        // 转String
+        middlewares.push(function (req, res) {
+            var body = source
+            res = enhanceResponse(res, response)
+
+            res.setHeader('Content-Type', 'text/plain');
+            res.setHeader('Content-Length', body.length);
+            res.end(body);
+        })
+    }
+
+    return middlewares
+}
