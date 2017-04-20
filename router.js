@@ -1,11 +1,10 @@
+var fs = require('fs');
 var type = require('type-detect');
 var express = require('express');
 var compose = require('compose-middleware').compose
 var logger = require('morgan');
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
-
-// var router = express.Router();
 
 var _req = require('./req.json')
 var _res = require('./res.json')
@@ -57,14 +56,24 @@ function build(middlewares, response) {
         })
     } else {
         // 转String
-        middlewares.push(function (req, res) {
-            var body = source
-            res = enhanceResponse(res, response)
+        if (/\.json$/.test(source)) {
+            source = JSON.parse(fs.readFileSync(global.routes_folder_path + "/" + source).toString())
+            middlewares.push(function (req, res) {
+                res = enhanceResponse(res, response)
+                res.json(source)
+            })
+        } else {
+            middlewares.push(function (req, res) {
+                var body = source
+                res = enhanceResponse(res, response)
 
-            res.setHeader('Content-Type', 'text/plain');
-            res.setHeader('Content-Length', body.length);
-            res.end(body);
-        })
+                res.setHeader('Content-Type', 'text/plain');
+                res.setHeader('Content-Length', body.length);
+                res.end(body);
+            })
+        }
+        
+        
     }
 
     return middlewares

@@ -1,0 +1,6 @@
+{
+    "path": "demo.json",
+    "demo": {
+        "json": "Hello world!"
+    }
+}

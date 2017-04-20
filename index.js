@@ -127,6 +127,8 @@ function mount_with_folder(app, routes_folder_path) {
   var r         = arguments[1] || './routes';
   var is_debug  = arguments[2] || false;
   
+  global.routes_folder_path = r;
+  
   // console.log('mount routes_folder_path = ' + r)
   routes = requireDirectory(module, r);
   
@@ -138,14 +140,14 @@ function mount_with_folder(app, routes_folder_path) {
 }
 
 module.exports = function(folder, serverport) {
-  if(serverport) port = serverport
-  mount_with_folder(app, 'routes', true);
+  if (serverport) port = serverport
+  mount_with_folder(app, folder, true);
   
   app.listen(port)
 }
 
 module.exports.app = function (folder){
-  mount_with_folder(app, 'routes', true);
+  mount_with_folder(app, folder, true);
 
   return app
 }
