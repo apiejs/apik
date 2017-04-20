@@ -157,6 +157,10 @@ module.exports = function () {
     console.dir(arguments)
   }
   
+  app.middlewares = require('./middlewares')(folder)
+  
+  console.log(app.middlewares)
+  
   mount_with_folder(app, folder, debug);
   
   app.listen(port)
