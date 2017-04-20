@@ -1,4 +1,4 @@
-# mount-routes
+# apie
 
 mount-routes = auto mount express routes with routes_folder_path
 
@@ -7,27 +7,28 @@ mount-routes = auto mount express routes with routes_folder_path
 
 ## Install
 
-    npm install --save mount-routes
+    npm install --save apie
 
 ## Usages
 
+way 1
 
 ```
-var express = require('express')
-var app = express()
+var apie = require('apie')
 
-var mount = require('mount-routes');
+apie('./routes', 3000);
+```
 
-// simple
-// mount(app);
-// with path
-// mount(app, __dirname + '/routes2');
+way 2
 
-// with path & api dump
-mount(app,  __dirname + '/routes2', true);
+```
+var apie = require(apie).app;
+
+// return an express app
+var app = apie('./routes');
 
 // start server
-app.listen(23018)
+app.listen(3000)
 ```
 
 ## Contributing
@@ -44,7 +45,6 @@ app.listen(23018)
 - v1.0.3 add api dump feature
 - v1.0.2 rename index to /
 - v1.0.0 初始化版本
-
 
 ## 欢迎fork和反馈
 
