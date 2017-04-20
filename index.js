@@ -50,16 +50,14 @@ function mount(app) {
 }
 
 function _use(app, file, path, handler) {
-  // console.dir(handler)
-  // console.log(handler.stack)
+  // 配置的path优先于file里的path
   if (handler.path) path = handler.path 
 
   var router = require('./router')(path, handler)
-
   var method = router.shift()
 
   app[method].apply(app, router)
-  // console.log(file+ ' ' +method + ' ' + path)
+    
   _track_routes(file, path, method);
 }
 
@@ -137,8 +135,8 @@ function mount_with_folder(app, routes_folder_path) {
   }
 }
 
-module.exports = function(folder) {
-  console.dir(arguments)
+module.exports = function () {
+  var folder = '.'
   var port = 3000;
   var debug = false;
   
@@ -153,12 +151,16 @@ module.exports = function(folder) {
     debug = arguments[2]
   }
   
+  if (debug === true) {
+    console.dir(arguments)
+  }
+  
   mount_with_folder(app, folder, debug);
   
   app.listen(port)
 }
 
-module.exports.app = function (){
+module.exports.app = function () {
   var folder = arguments[0] || '.';
   var debug = arguments[1] || false;
   
