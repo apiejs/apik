@@ -123,6 +123,9 @@ function mount_with_folder(app, routes_folder_path) {
   // debug('mount routes_folder_path = ' + r)
   routes = requireDirectory(module, r);
   
+  // middlewares
+  app.middlewares = require('./middlewares')(f)
+  
   // views
   app.set('views', path.join(r, 'views'));
   app.set('view engine', 'pug');
@@ -156,10 +159,6 @@ module.exports = function () {
   if (debug === true) {
     console.dir(arguments)
   }
-  
-  app.middlewares = require('./middlewares')(folder)
-  
-  console.log(app.middlewares)
   
   mount_with_folder(app, folder, debug);
   
