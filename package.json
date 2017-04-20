@@ -1,6 +1,6 @@
 {
   "name": "apie",
-  "version": "1.0.15",
+  "version": "1.0.16",
   "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
   "bin": {
@@ -38,6 +38,5 @@
     "require-directory": "^2.1.1",
     "type-detect": "^4.0.3"
   },
-  "devDependencies": {
-  }
+  "devDependencies": {}
 }
