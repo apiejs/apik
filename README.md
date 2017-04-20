@@ -41,13 +41,15 @@ app.listen(3000)
 
 ## 版本历史
 
+- v1.0.7 add cli
+- v1.0.5 refact
 - v1.0.3 add api dump feature
 - v1.0.2 rename index to /
 - v1.0.0 初始化版本
 
 ## 欢迎fork和反馈
 
-- write by `i5ting` shiren1118@126.com
+- write by `i5ting` i5ting@126.com
 
 如有建议或意见，请在issue提问或邮件
 
