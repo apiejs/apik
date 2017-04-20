@@ -2,7 +2,6 @@ var config = require('./routes/simple.js')
 
 var r = require('./router')(config)
 
-
 // for test
 var express = require('express')
 var app = express()
