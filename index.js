@@ -124,7 +124,7 @@ function mount_with_folder(app, routes_folder_path) {
   routes = requireDirectory(module, r);
   
   // middlewares
-  app.middlewares = require('./middlewares')(f)
+  app.middlewares = require('./middlewares')(r)
   
   // views
   app.set('views', path.join(r, 'views'));
