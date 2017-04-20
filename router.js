@@ -26,7 +26,7 @@ module.exports = function (app, path, config) {
           var key = config.middlewares[k]
         
           if (app.middlewares[key]) {
-            console.log(app.middlewares[key] + "")
+            debug(app.middlewares[key] + "")
             middlewares.push(app.middlewares[key])
           }
         }
