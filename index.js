@@ -54,9 +54,11 @@ function _use(app, file, path, handler) {
   // console.log(handler.stack)
   if (handler.path) path = handler.path 
 
-  var router = require('./router')(handler)
+  var router = require('./router')(path, handler)
 
-  app[router.method](path, router.handler);
+  var method = router.shift()
+
+  app[method].apply(app, router)
   
   _track_routes(file, path, handler.stack);
 }
@@ -144,7 +146,7 @@ function mount_with_folder(app, routes_folder_path) {
   // static server
   app.use(express.static(path.join(r, 'public')));
 
-  
+  // mount
   mount(app) ;
   
   if(is_debug){

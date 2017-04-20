@@ -9,7 +9,7 @@ var bodyParser = require('body-parser');
 var _req = require('./req.json')
 var _res = require('./res.json')
 
-module.exports = function (config) {
+module.exports = function (path, config) {
     var request = Object.assign({}, _req, config.req)
     var response = Object.assign({}, _res, config.res)
 
@@ -28,12 +28,9 @@ module.exports = function (config) {
 
     build(middlewares, response)
 
-    var handler = compose(middlewares)
+    // var handler = compose(middlewares)
 
-    return {
-        method: request.method,
-        handler: handler
-    }
+    return [request.method, path].concat(middlewares)
 };
 
 function enhanceResponse(res, response) {
