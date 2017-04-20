@@ -1,5 +1,5 @@
 {
-  "name": "mount-routes",
+  "name": "apie",
   "version": "1.0.5",
   "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
