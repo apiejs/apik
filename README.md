@@ -5,6 +5,12 @@ apie = auto mount express routes with routes_folder_path
 [![gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
 
+## Features
+
+- Convention over configuration
+- Support Router use FileName
+- Support Auto-mount-router（Infinite nested directory）
+
 ## Install
 
     npm install --save apie
@@ -29,6 +35,43 @@ var app = apie('./routes');
 
 // start server
 app.listen(3000)
+```
+
+## Api Examples
+
+simple
+
+```
+module.exports = {
+    "path": "/json",
+    "body": {
+        "json": "Hello world!"
+    }
+}
+```
+
+function
+
+```
+module.exports = {
+    "path": "/json",
+    "body": function(req, res){
+       res.json("Hello world!")
+    }
+}
+```
+
+middlewares
+
+```
+module.exports = {
+    "path": "/json",
+    "body":  [function(req, res, next) {
+      next()
+    }, function(req, res){
+       res.json("Hello world!")
+    }]
+}
 ```
 
 ## Contributing
