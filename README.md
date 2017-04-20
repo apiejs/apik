@@ -13,9 +13,22 @@ apie = auto mount express routes with routes_folder_path
 
 ## Install
 
-    npm install --save apie
+with the simplest way, you can install apes as a cli module
+
+```
+$ [sudo] npm install --global apie
+$ apie
+```
+
+apie will mount routes directory as Auto-mount-folder
 
 ## Usages
+
+install as dependency
+
+```
+$ npm install --save apie
+```
 
 way 1
 
