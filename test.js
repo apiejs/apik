@@ -1,7 +1,3 @@
+var apie = require('./index')
 
-var mount = require('./index')
-
-// // simple
-
-mount('./routes');
-
+apie('./routes');
