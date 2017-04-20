@@ -52,7 +52,24 @@ app.listen(3000)
 
 ## Api Examples
 
-simple
+- string
+- json
+- jsonfile
+- function
+- middlewares
+- view template
+- static server
+
+### string
+
+```
+module.exports = {
+    "path": "/json",
+    "body": "Hello world!"
+}
+```
+
+### json 
 
 ```
 module.exports = {
@@ -63,7 +80,7 @@ module.exports = {
 }
 ```
 
-jsonfile
+### jsonfile
 
 ```
 module.exports = {
@@ -72,7 +89,7 @@ module.exports = {
 }
 ```
 
-function
+### function
 
 ```
 module.exports = {
@@ -83,7 +100,7 @@ module.exports = {
 }
 ```
 
-middlewares
+### middlewares
 
 ```
 module.exports = {
@@ -95,6 +112,49 @@ module.exports = {
     }]
 }
 ```
+
+### view template
+
+
+step1: app.js
+
+```
+var apie = require('./index').app;
+
+// return an express app
+var app = apie('./routes');
+
+app.set('view engine', 'pug');
+
+// start server
+app.listen(3000)
+```
+
+step2: install pug template
+
+```
+npm install pug
+```
+
+step3: use res.render()
+
+```
+module.exports = {
+    "path": "/view",
+    "body": function (req, res) {
+        res.render('index', { title: 'Express' });
+    }
+}
+```
+
+### static server
+
+```
+$ mkdir routes/public
+```
+
+and then create html/js/jcss/json file. it will be served as static server, all the same as express!
+
 
 ## Contributing
 

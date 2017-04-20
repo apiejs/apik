@@ -135,6 +135,7 @@ function mount_with_folder(app, routes_folder_path) {
   
   // views
   app.set('views', path.join(r, 'views'));
+  app.set('view engine', 'pug');
   // static server
   app.use(express.static(path.join(r, 'public')));
 
