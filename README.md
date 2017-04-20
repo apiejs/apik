@@ -63,6 +63,15 @@ module.exports = {
 }
 ```
 
+jsonfile
+
+```
+module.exports = {
+    "path": "/jsonfile",
+    "body": "demo.json"
+}
+```
+
 function
 
 ```
