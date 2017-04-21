@@ -219,6 +219,14 @@ module.exports = {
 }
 ```
 
+## HTTP Api
+
+get all api info at http://127.0.0.1:3000/apie.json
+
+```
+{"data":[{"file":"/all.js","method":"all","path":"/all"},{"file":"/api/index.js","method":"get","path":"/home"},{"file":"/api/user.js","method":"get","path":"/home1"},{"file":"/demo/path.js","method":"get","path":"/demo/path"},{"file":"/demo/demo/json.js","method":"get","path":"/demo/demo/json"},{"file":"/home.js","method":"get","path":"/home"},{"file":"/json.js","method":"get","path":"/json"},{"file":"/jsonfile.js","method":"get","path":"/jsonfile"},{"file":"/middleware.js","method":"get","path":"/middleware"},{"file":"/middlewares.js","method":"get","path":"/middlewares"},{"file":"/movies.js","method":"get","path":"/movies"},{"file":"/post.js","method":"post","path":"/post"},{"file":"/simple.js","method":"get","path":"/simple"},{"file":"/users.js","method":"get","path":"/users"},{"file":"/view.js","method":"get","path":"/view"}]}
+```
+
 ## Contributing
 
 1. Fork it
