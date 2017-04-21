@@ -83,7 +83,7 @@ function _dump(routes_folder_path) {
   console.log('\n******************************************************');
   console.log('\t\tApie Router Dump');
   console.log('******************************************************\n');
-  
+
   for (var k in stack) {
     var obj = stack[k];
     // console.dir(k)
@@ -92,6 +92,10 @@ function _dump(routes_folder_path) {
         [routes_folder_path + obj.file, obj.method, obj.path]
     );
   }
+
+  table.push(
+    ["system", 'get', '/apie.json']
+  );
 
   console.log(table.toString());
 }
@@ -131,6 +135,12 @@ function mount_with_folder(app, routes_folder_path) {
   app.set('view engine', 'pug');
   // static server
   app.use(express.static(path.join(r, 'public')));
+
+  app.get('/apie.json', function (req, res) {
+    res.json({
+      data: stack
+    })
+  })
 
   // mount
   mount(app) ;
