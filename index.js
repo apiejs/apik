@@ -145,7 +145,7 @@ function mount_with_folder(app, routes_folder_path) {
   app.use(serve(path.join(r, 'public')));
   
 
-  router.get('/apie.json', function (ctx) {
+  router.get('/api.json', function (ctx) {
     ctx.body = {
       data: stack
     }

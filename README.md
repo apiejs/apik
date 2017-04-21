@@ -119,8 +119,8 @@ module.exports = {
 ```
 module.exports = {
     "path": "/json",
-    "body": function(req, res){
-       res.json("Hello world!")
+    "body": function(ctx, next){
+       ctx.body = "Hello world!"
     }
 }
 ```
@@ -130,10 +130,10 @@ module.exports = {
 ```
 module.exports = {
     "path": "/json",
-    "body":  [function(req, res, next) {
+    "body":  [function(ctx,  next) {
       next()
-    }, function(req, res){
-       res.json("Hello world!")
+    }, function(ctx){
+       ctx.body = "Hello world!"
     }]
 }
 ```
@@ -166,8 +166,8 @@ step3: use res.render()
 ```
 module.exports = {
     "path": "/view",
-    "body": function (req, res) {
-        res.render('index', { title: 'Express' });
+    "body": function (ctx) {
+        return ctx.render('index', { title: 'Express' });
     }
 }
 ```
@@ -187,7 +187,7 @@ use express/connect middleware in middlewares folder
 middlewares/a.js
 
 ```
-module.exports = function a (req, res, next) {
+module.exports = function a (ctx, next) {
   console.log('a')
   next()
 }
@@ -221,7 +221,7 @@ module.exports = {
 
 ## HTTP Api
 
-get all api info at http://127.0.0.1:3000/apik.json
+get all api info at http://127.0.0.1:3000/api.json
 
 ```
 {"data":[{"file":"/all.js","method":"all","path":"/all"},{"file":"/api/index.js","method":"get","path":"/home"},{"file":"/api/user.js","method":"get","path":"/home1"},{"file":"/demo/path.js","method":"get","path":"/demo/path"},{"file":"/demo/demo/json.js","method":"get","path":"/demo/demo/json"},{"file":"/home.js","method":"get","path":"/home"},{"file":"/json.js","method":"get","path":"/json"},{"file":"/jsonfile.js","method":"get","path":"/jsonfile"},{"file":"/middleware.js","method":"get","path":"/middleware"},{"file":"/middlewares.js","method":"get","path":"/middlewares"},{"file":"/movies.js","method":"get","path":"/movies"},{"file":"/post.js","method":"post","path":"/post"},{"file":"/simple.js","method":"get","path":"/simple"},{"file":"/users.js","method":"get","path":"/users"},{"file":"/view.js","method":"get","path":"/view"}]}
