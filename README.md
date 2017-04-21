@@ -50,6 +50,26 @@ var app = apie('./routes');
 app.listen(3000)
 ```
 
+## Configuration
+
+use `.json` for simple mock-api
+
+```
+{
+    "body": {
+        "json": "Hello Sang!"
+    }
+}
+```
+
+use `.js` for all features that expressjs supported
+
+```
+module.exports = {
+    "body": "Hello world!"
+}
+```
+
 ## Api Examples
 
 > **Response.body Oriented Programming(ROP)**
