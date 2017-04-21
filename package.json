@@ -29,12 +29,11 @@
   },
   "homepage": "https://github.com/i5ting/mount-routes#readme",
   "dependencies": {
-    "body-parser": "~1.17.1",
+    "koa-bodyparser": "^3.1.0",
     "cli-table": "^0.3.1",
-    "cookie-parser": "~1.4.3",
     "debug": "^2.2.0",
-    "express": "^4.15.2",
-    "morgan": "~1.8.1",
+    "koa": "^2.0.1",
+    "koa-logger": "^2.0.0",
     "require-directory": "^2.1.1",
     "type-detect": "^4.0.3"
   },
