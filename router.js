@@ -1,10 +1,9 @@
 var fs = require('fs')
 var type = require('type-detect')
-var express = require('express')
-var logger = require('morgan')
-var cookieParser = require('cookie-parser')
-var bodyParser = require('body-parser')
-var debug = require('debug')('apie')
+var logger = require('koa-logger')
+// var cookieParser = require('cookie-parser')
+var bodyParser = require('koa-bodyparser')
+var debug = require('debug')('apie-koa')
 
 var _req = require('./req.json')
 var _res = require('./res.json')
@@ -14,10 +13,9 @@ module.exports = function (app, path, config) {
     var response = Object.assign({}, _res, config.res)
 
     var middlewares = [
-        logger('dev'), 
-        bodyParser.json(), 
-        bodyParser.urlencoded({ extended: false }), 
-        cookieParser()
+        logger(), 
+        bodyParser() 
+        // cookieParser()
     ]
     
     if (config.middlewares) {
@@ -68,26 +66,21 @@ function build(middlewares, response) {
         middlewares.push(source[k])
       }
     } else if (type(source) === 'Object') {
-        middlewares.push(function (req, res) {
-            res = enhanceResponse(res, response)
-            res.json(source)
+        middlewares.push(function (ctx) {
+            // res = enhanceResponse(ctx.response, response)
+            // res.json(source)
+            ctx.body = source
         })
     } else {
         // 转String
         if (/\.json$/.test(source)) {
             source = JSON.parse(fs.readFileSync(global.routes_folder_path + "/" + source).toString())
-            middlewares.push(function (req, res) {
-                res = enhanceResponse(res, response)
-                res.json(source)
+            middlewares.push(function (ctx) {
+                ctx.body = source
             })
         } else {
-            middlewares.push(function (req, res) {
-                var body = source
-                res = enhanceResponse(res, response)
-
-                res.setHeader('Content-Type', 'text/plain');
-                res.setHeader('Content-Length', body.length);
-                res.end(body);
+            middlewares.push(function (ctx) {
+                ctx.body = rouce
             })
         }
     }

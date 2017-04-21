@@ -1,4 +1,4 @@
-module.exports = function a (req, res, next) {
+module.exports = function a (ctx, next) {
   console.log('a')
-  next()
+  return next()
 }

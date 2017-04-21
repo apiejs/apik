@@ -5,8 +5,8 @@ module.exports = {
   },
   "res": {
     "status": 200,
-    "body": function(req, res){
-       res.json("Hello world!")
+    "body": function(ctx){
+       ctx.body = ("Hello world!")
     },
     "headers": {
       "Content-Type": "text/plain"

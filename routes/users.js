@@ -2,12 +2,12 @@
 module.exports = {
   "body": 
   [
-    function(req, res, next) {
+    function(ctx, next) {
       next()
-    }, function(req, res, next){
-      res.json({
+    }, function(ctx, next){
+      return ctx.body = {
         key: "Hello world!"
-      })
+      }
     }
   ]
 }

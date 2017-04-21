@@ -2,10 +2,14 @@ var fs = require('fs')
 var path = require('path')
 var requireDirectory = require('require-directory')
 var routes = requireDirectory(module, './routes')
-var express = require('express')
-var debug = require('debug')('apie')
+var debug = require('debug')('apie-koa')
+var views = require('koa-views');
 
-var app = express()
+const Koa = require('koa');
+const app = new Koa();
+
+var router = require('koa-router')();
+
 var stack = []
 
 /**
@@ -22,7 +26,7 @@ var stack = []
  * @return 
  * @api public
  */
-function mount(app) {
+function mount(router) {
   var r = arguments[1] || routes;
   var pre = arguments[2] || '';
   
@@ -40,13 +44,13 @@ function mount(app) {
 
     if (typeof r[k] == 'object' && !(r[k]['body'] || r[k]['res']) ){
       // console.log('this is a obj');
-      mount(app, r[k], pre + k + '/');
+      mount(router, r[k], pre + k + '/');
     } else if(k === 'index') {
       path = '/'+ pre;
-      _use(app, file, path, r[k]);
+      _use(router, file, path, r[k]);
     } else {
       path = '/' + pre + '' + k;
-      _use(app, file, path, r[k]);
+      _use(router, file, path, r[k]);
     }
   }
 }
@@ -116,7 +120,7 @@ function _dump(routes_folder_path) {
  */
 function mount_with_folder(app, routes_folder_path) {
   stack = [];// empty when enter
-  
+
   var r         = arguments[1] || './routes';
   var is_debug  = arguments[2] || false;
 
@@ -128,22 +132,28 @@ function mount_with_folder(app, routes_folder_path) {
   routes = requireDirectory(module, r);
   
   // middlewares
-  app.middlewares = require('./middlewares')(r)
+  router.middlewares = require('./middlewares')(r)
   
-  // views
-  app.set('views', path.join(r, 'views'));
-  app.set('view engine', 'pug');
-  // static server
-  app.use(express.static(path.join(r, 'public')));
+  // TODO: views
+  // app.set('views', path.join(r, 'views'));
+  // app.set('view engine', 'pug');
+  app.use(views(path.join(r, 'views'), { extension: 'pug' }))
 
-  app.get('/apie.json', function (req, res) {
-    res.json({
+  // static server
+  // app.use(express.static(path.join(r, 'public')));
+
+  router.get('/apie.json', function (ctx) {
+    ctx.body = {
       data: stack
-    })
+    }
   })
 
   // mount
-  mount(app) ;
+  mount(router) ;
+  
+  app
+    .use(router.routes())
+    .use(router.allowedMethods());
   
   if(is_debug){
     _dump (routes_folder_path);
