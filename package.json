@@ -1,6 +1,6 @@
 {
   "name": "apie",
-  "version": "1.0.19",
+  "version": "1.0.20",
   "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
   "bin": {
