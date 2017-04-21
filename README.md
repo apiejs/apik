@@ -1,6 +1,6 @@
-# apie
+# apik
 
-apie = auto mount express routes with routes_folder_path
+apik = auto mount koa routes with routes_folder_path
 
 [![gitter][gitter-image]][gitter-url]
 [![NPM version][npm-image]][npm-url]
@@ -16,35 +16,35 @@ apie = auto mount express routes with routes_folder_path
 with the simplest way, you can install apes as a cli module
 
 ```
-$ [sudo] npm install --global apie
-$ apie
+$ [sudo] npm install --global apik
+$ apik
 ```
 
-apie will mount routes directory as Auto-mount-folder
+apik will mount routes directory as Auto-mount-folder
 
 ## Usages
 
 install as dependency
 
 ```
-$ npm install --save apie
+$ npm install --save apik
 ```
 
 way 1
 
 ```
-var apie = require('apie')
+var apik = require('apik')
 
-apie('./routes', 3000);
+apik('./routes', 3000);
 ```
 
 way 2
 
 ```
-var apie = require(apie).app;
+var apik = require(apik).app;
 
 // return an express app
-var app = apie('./routes');
+var app = apik('./routes');
 
 // start server
 app.listen(3000)
@@ -144,10 +144,10 @@ module.exports = {
 step1: app.js
 
 ```
-var apie = require('./index').app;
+var apik = require('./index').app;
 
 // return an express app
-var app = apie('./routes');
+var app = apik('./routes');
 
 app.set('view engine', 'pug');
 
@@ -221,7 +221,7 @@ module.exports = {
 
 ## HTTP Api
 
-get all api info at http://127.0.0.1:3000/apie.json
+get all api info at http://127.0.0.1:3000/apik.json
 
 ```
 {"data":[{"file":"/all.js","method":"all","path":"/all"},{"file":"/api/index.js","method":"get","path":"/home"},{"file":"/api/user.js","method":"get","path":"/home1"},{"file":"/demo/path.js","method":"get","path":"/demo/path"},{"file":"/demo/demo/json.js","method":"get","path":"/demo/demo/json"},{"file":"/home.js","method":"get","path":"/home"},{"file":"/json.js","method":"get","path":"/json"},{"file":"/jsonfile.js","method":"get","path":"/jsonfile"},{"file":"/middleware.js","method":"get","path":"/middleware"},{"file":"/middlewares.js","method":"get","path":"/middlewares"},{"file":"/movies.js","method":"get","path":"/movies"},{"file":"/post.js","method":"post","path":"/post"},{"file":"/simple.js","method":"get","path":"/simple"},{"file":"/users.js","method":"get","path":"/users"},{"file":"/view.js","method":"get","path":"/view"}]}
@@ -255,7 +255,7 @@ this repo is released under the [MIT
 License](http://www.opensource.org/licenses/MIT).
 
 
-[npm-image]: https://img.shields.io/npm/v/apie.svg?style=flat-square
-[npm-url]: https://npmjs.org/package/apie
+[npm-image]: https://img.shields.io/npm/v/apik.svg?style=flat-square
+[npm-url]: https://npmjs.org/package/apik
 [gitter-image]: https://badges.gitter.im/Join%20Chat.svg
-[gitter-url]: https://gitter.im/i5ting/apie?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
+[gitter-url]: https://gitter.im/i5ting/apik?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge
