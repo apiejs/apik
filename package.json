@@ -1,5 +1,5 @@
 {
-  "name": "apie",
+  "name": "apik",
   "version": "1.0.21",
   "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
@@ -12,7 +12,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/i5ting/mount-routes.git"
+    "url": "git+https://github.com/apiejs/apik.git"
   },
   "keywords": [
     "express",
@@ -25,9 +25,9 @@
   "author": "i5ting",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/i5ting/mount-routes/issues"
+    "url": "https://github.com/apiejs/apik/issues"
   },
-  "homepage": "https://github.com/i5ting/mount-routes#readme",
+  "homepage": "https://github.com/apiejs/apik#readme",
   "dependencies": {
     "koa-bodyparser": "^3.1.0",
     "cli-table": "^0.3.1",
