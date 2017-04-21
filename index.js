@@ -4,7 +4,7 @@ var requireDirectory = require('require-directory')
 var routes = requireDirectory(module, './routes')
 var debug = require('debug')('apie-koa')
 var views = require('koa-views');
-
+var serve = require('koa-static');
 const Koa = require('koa');
 const app = new Koa();
 
@@ -141,6 +141,9 @@ function mount_with_folder(app, routes_folder_path) {
 
   // static server
   // app.use(express.static(path.join(r, 'public')));
+  // $ GET /package.json
+  app.use(serve(path.join(r, 'public')));
+  
 
   router.get('/apie.json', function (ctx) {
     ctx.body = {
