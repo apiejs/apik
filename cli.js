@@ -8,7 +8,7 @@ var current_path = process.cwd()
 
 var apie = require('./index')
 
-apie(current_path + '/routes')
+apie(current_path + '/app')
 
 // TODO: 初始化routes到当前目录
 

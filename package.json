@@ -4,7 +4,7 @@
   "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
   "bin": {
-    "apie": "cli.js"
+    "apik": "cli.js"
   },
   "scripts": {
     "start": "npm publish .",
