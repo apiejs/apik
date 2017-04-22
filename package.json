@@ -1,6 +1,6 @@
 {
   "name": "apik",
-  "version": "1.0.22",
+  "version": "1.0.23",
   "description": "mount-routes = auto mount express routes with routes_folder_path",
   "main": "index.js",
   "bin": {
